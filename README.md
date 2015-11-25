@@ -2,6 +2,8 @@ First, run:
 ${appserver.home}/bin/startup.sh
 where appserver = ~/tools/apache-tomcat.../
 
+Then,
+
 * ant clean
 * ant resolve
 * ant build 

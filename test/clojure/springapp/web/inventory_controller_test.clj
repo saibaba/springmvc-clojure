@@ -5,7 +5,9 @@
 
 (defn create-sample-inventory-controller
   []
-  (let [ controller (springapp.web.InventoryController. ) spm (springapp.service.SimpleProductManager. ) ]
+  (let [ controller (springapp.web.InventoryController. )
+         spm (springapp.service.SimpleProductManager. )
+         x (.setProductDao spm (springapp.repository.InMemoryProductDao. (java.util.ArrayList. ))) ]
     (.setProductManager controller spm)
     controller))
 

@@ -16,7 +16,7 @@
 
     <!-- beans for web/ui related components -->
     <context:component-scan base-package="springapp.web"/>
-    <context:annotation-config />
+    <context:annotation-config />  <!-- even things like @Autowired need this -->
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver"/>
     <bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver"/>
@@ -31,30 +31,7 @@
       <property name="basename" value="messages"/>
     </bean>
 
-    <bean id="productManager" class="springapp.service.SimpleProductManager">
-      <property name="products">
-        <list>
-          <ref bean="product1"/>
-          <ref bean="product2"/>
-          <ref bean="product3"/>
-        </list>
-      </property>
-    </bean>
 
-    <bean id="product1" class="springapp.domain.Product">
-      <property name="description" value="Lamp"/>
-      <property name="price" value="5.75"/>
-    </bean>
-                                                                                                                                        
-    <bean id="product2" class="springapp.domain.Product">
-      <property name="description" value="Table"/>
-      <property name="price" value="75.25"/>
-    </bean>
-
-    <bean id="product3" class="springapp.domain.Product">
-      <property name="description" value="Chair"/>
-      <property name="price" value="22.79"/>
-    </bean>
 
     <bean name="/clojure" class="springapp.web.ClojureHWController" />
 

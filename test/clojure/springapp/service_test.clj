@@ -15,7 +15,7 @@
       (.setDescription p2 "Table")
       (.setPrice p2 150.10)
       (.add products p2))
-    (.setProducts spm products)
+    (.setProductDao spm (springapp.repository.InMemoryProductDao. products))
     spm))
     
 (deftest test-simple-product-manager
@@ -24,7 +24,7 @@
       (is (= 2 (.size (.getProducts spm)))))))
 
 (deftest test-simple-product-manager-no-products
-  (let [spm (springapp.service.SimpleProductManager. )]
+  (let [spm (springapp.service.SimpleProductManager. ) x (.setProductDao spm (springapp.repository.InMemoryProductDao. nil)) ]
     (testing "Test Simple Product Manager with no products"
       (is (nil? (.getProducts spm))))))
 

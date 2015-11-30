@@ -9,11 +9,12 @@
   :init init
   :prefix "product-"
   :methods [[setDescription [String] void] [getDescription [] String]
+            [setId [java.lang.Integer] void] [getId [] java.lang.Integer]
            [setPrice [java.lang.Double] void] [getPrice [] java.lang.Double]])
 
 (defn product-init
   []
-  [ [] (atom {:description "" :price 0.0 })])
+  [ [] (atom {:id nil :description "" :price 0.0 })])
 
 (defn product-setDescription
   [this description]
@@ -31,3 +32,10 @@
   [this]
   (springapp.bean/get-field this :price))
 
+(defn product-setId
+  [this id]
+  (springapp.bean/set-field this :id id))
+
+(defn product-getId
+  [this]
+  (springapp.bean/get-field this :id))

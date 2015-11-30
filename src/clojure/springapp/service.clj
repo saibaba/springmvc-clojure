@@ -5,7 +5,7 @@
 (gen-interface
   :name    springapp.service.ProductManager
   :extends [java.io.Serializable]
-  :methods [[setProducts [java.util.List] void] [getProducts [] java.util.List]
+  :methods [ [getProducts [] java.util.List]
            [increasePrice [java.lang.Integer] void] ])
 
 (gen-class
@@ -14,35 +14,37 @@
   :main   false
   :state  state
   :init   init
+  :methods [ [^{org.springframework.beans.factory.annotation.Autowired {} } setProductDao [springapp.repository.ProductDao] void] ]
   :prefix "simple-product-manager-")
 
 (defn simple-product-manager-init
   []
-  [ [] (atom {:products nil })])
+  [ [] (atom {:productDao nil })])
 
 (defn simple-product-manager-getProducts
   [this]
-  (springapp.bean/get-field this :products))
+  (.getProductList (springapp.bean/get-field this :productDao)))
 
-(defn simple-product-manager-setProducts
-  [this products]
-  (springapp.bean/set-field this :products products))
+(defn simple-product-manager-setProductDao
+  [this productDao]
+  (springapp.bean/set-field this :productDao productDao))
 
 (defn calculate-new-price
   [price percent]
   (* price (/ (+ 100.0 percent) 100.0)))
 
 (defn increase-product-price
-  [product percent]
-  (let [new-price (calculate-new-price (.getPrice product) percent)]
+  [this product percent]
+  (let [new-price (calculate-new-price (.getPrice product) percent) productDao (springapp.bean/get-field this :productDao) ]
     (.setPrice product new-price)
+    (.saveProduct productDao product)
     product))
 
 (defn simple-product-manager-increasePrice
   [this percent]
-  (let [products (springapp.bean/get-field this :products)]
+  (let [products (.getProductList (springapp.bean/get-field this :productDao))]
     ; calling doall to realize the lazy sequence created by map
-    (doall (map (fn [p] (increase-product-price p percent)) products))))
+    (doall (map (fn [p] (increase-product-price this p percent)) products))))
 
 (gen-class
   :name   springapp.service.PriceIncrease

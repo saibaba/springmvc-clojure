@@ -1,5 +1,5 @@
 <ivy-module version="2.0">
-  <info organisation="com.amazon" module="hw"/>
+  <info organisation="com.amazon" module="springapp-clj"/>
   <configurations>
     <conf name="runtime" description="binary jars"/>
     <conf name="testing" description="dev time jars"/>
@@ -16,7 +16,9 @@
     <dependency org="junit" name="junit" rev="4.11" conf="testing->default" />
     <dependency org="org.springframework" name="spring-test" rev="4.1.5.RELEASE" conf="testing->default" />
     <dependency org="javax.servlet" name="jstl" rev="1.2" conf="runtime->default" />
-    <dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0" conf="runtime->default" />
+    <dependency org="javax.servlet.jsp.jstl" name="jstl-api" rev="1.2" conf="testing->default" />
+    <dependency org="org.glassfish.web" name="jstl-impl" rev="1.2" conf="runtime->default" />
+    <!-- some of the above bring in servlet-api and jsp-api and I need to use provided scope to not deploy them to WEB-INF/lib  and use the ones provided by tomcat -->
     <dependency org="log4j" name="log4j" rev="1.2.17" conf="runtime->default" />
     <dependency org="org.clojure" name="clojure" rev="1.7.0" conf="runtime->default" />
   </dependencies>

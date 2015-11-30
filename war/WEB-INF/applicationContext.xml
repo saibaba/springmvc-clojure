@@ -11,7 +11,8 @@
            http://www.springframework.org/schema/tx 
            http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
-    <!-- the parent application context definition for the hw application -->
+           <!-- the parent application context definition for the springapp-clj application -->
+           <!-- usually register service/persistence beans (application, functionality related - not web/ui related) in root context -->
 
 
 </beans>

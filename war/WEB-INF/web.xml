@@ -1,29 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
-         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+  <display-name>web.xml for my spring mvc app done in clojure</display-name>
+     
+  <!-- ===================================================== -->
+  <!--  1. Create root context with spring listener          -->
+  <!--     Remove this means only use servlet contxt         -->
+  <!-- ===================================================== -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  
+    <!-- ===================================================== -->
+    <!-- Can modify default root context config file           -->
+    <!-- ===================================================== -->
+    <!-- 
+    <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    -->
+  </listener>
+ 
+ 
+  <!-- ===================================================== -->
+  <!--  2. Define servlet with private context               -->
+  <!-- ===================================================== -->
+  <servlet>
+    <servlet-name>springapp-clj</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- ================================================= -->
+    <!-- Set contextConfigLocation to empty                -->
+    <!-- means only use root context.                      -->
+    <!-- BeanNameUrlHandlerMapping will be used by default -->
+    <!-- for mapping between URL and page controller(      -->
+    <!-- the ones you write)                               -->
+    <!-- ================================================= -->
+    <!--
+      <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>springapp-clj-servlet.xml</param-value>
+      </init-param>
+    -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- ===================================================== -->
+  <!-- One servlet, the dispatcher, to rule it all           -->
+  <!-- ===================================================== -->
+  <servlet-mapping>
+    <servlet-name>springapp-clj</servlet-name>
+    <url-pattern>/clojure</url-pattern>
+    <url-pattern>/clojure/inventory</url-pattern>
+    <url-pattern>/clojure/priceincrease/*</url-pattern>
+  </servlet-mapping>
 
-    <servlet>
-        <servlet-name>hw</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+  <welcome-file-list>
+    <welcome-file>
+      index.jsp
+    </welcome-file>
+  </welcome-file-list>
 
-    <servlet-mapping>
-        <servlet-name>hw</servlet-name>
-        <url-pattern>/clojure</url-pattern>
-    </servlet-mapping>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/spring</taglib-uri>
+      <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
+    </taglib>
+  </jsp-config>
 
-    <welcome-file-list>
-        <welcome-file>
-            index.jsp
-        </welcome-file>
-    </welcome-file-list>
 </web-app>

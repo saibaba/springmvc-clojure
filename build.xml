@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 
-<project name="hw" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="usage">
+<project name="springapp-clj" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="usage">
+
+
+
+    <property name="ant.build.javac.source" value="1.8"/>
+    <property name="ant.build.javac.target" value="1.8"/>
+
     <property file="build.properties"/>
 
     <property name="src.dir" value="src"/>
@@ -9,9 +15,14 @@
     <property name="test.dir" value="test"/>
     <property name="web.dir" value="war"/>
     <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
-    <property name="name" value="hw"/>
+    <property name="name" value="springapp-clj"/>
     <property name="lib.dir" value="${web.dir}/WEB-INF/lib/" />
     <property name="test.lib.dir" value="lib/" />
+
+    <!-- http://stackoverflow.com/questions/5103384/ant-warning-includeantruntime-was-not-set -->
+    <presetdef name="javac">
+      <javac includeantruntime="false" target="1.8" />
+    </presetdef>
 
     <path id="master-classpath">
         <fileset dir="${web.dir}/WEB-INF/lib">
@@ -76,25 +87,48 @@
         <mkdir dir="${build.dir}"/>
     </target>
 
-    <target name="compile-clojure" description="Compile Clojure code.">
+    <target name="clojure-compile" description="Compile Clojure code.">
       <java classname="clojure.lang.Compile" fork="true" failonerror="true">
 
         <classpath>
           <pathelement location="src/clojure" />
-          <!-- pathelement location="${build.dir}"/ -->
-        <fileset dir="${web.dir}/WEB-INF/lib">
-            <include name="*.jar"/>
-        </fileset>
+          <path refid="master-classpath" />
         </classpath>
 
         <sysproperty key="clojure.compile.path" value="${build.dir}"/>
-        <arg value="hw.web"/>
+        <arg value="springapp.domain"/>
+        <arg value="springapp.service"/>
+        <arg value="springapp.web.error"/>
+        <arg value="springapp.web.inventory"/>
+        <arg value="springapp.web.price"/>
+        <arg value="springapp.web"/>
       </java>
     </target>
 
+    <macrodef name="run-clojure-test">
+      <attribute name="testfile" />
+      <sequential>
+        <java classname="clojure.main" fork="true" failonerror="true">
+          <classpath>
+            <pathelement location="test/clojure" />
+            <path refid="master-classpath" />
+          </classpath>
 
-    <target name="build" description="Compile main source tree java files" depends="init,compile-clojure">
-        <javac destdir="${build.dir}" debug="true"
+          <arg value="@{testfile}"/>
+        </java>
+      </sequential>
+    </macrodef>
+
+    <target name="clojure-test">
+      <run-clojure-test testfile="test/clojure/springapp/domain_test.clj" />
+      <run-clojure-test testfile="test/clojure/springapp/service_test.clj" />
+      <run-clojure-test testfile="test/clojure/springapp/web/inventory_controller_test.clj" />
+      <run-clojure-test testfile="test/clojure/springapp/web/price_increase_controller_test.clj" />
+      <run-clojure-test testfile="test/clojure/springapp/web_test.clj" />
+    </target>
+
+    <target name="build" description="Compile main source tree java files" depends="init,clojure-compile">
+        <javac target="1.8" destdir="${build.dir}" debug="true"
                deprecation="false" optimize="false" failonerror="true">
             <src path="${src.dir}"/>
             <classpath refid="master-classpath"/>
@@ -130,6 +164,16 @@
         <delete>
             <fileset dir="${build.dir}">
                 <include name="**/*.class"/>
+            </fileset>
+        </delete>
+        <delete>
+            <fileset dir="${lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </delete>
+        <delete>
+            <fileset dir="${test.lib.dir}">
+                <include name="*.jar"/>
             </fileset>
         </delete>
     </target>
@@ -214,14 +258,14 @@
             
     <target name="buildtests" description="Compile test tree java files">
         <mkdir dir="${build.dir}"/>
-        <javac destdir="${build.dir}" debug="true"
+        <javac target="1.8" destdir="${build.dir}" debug="true"
                deprecation="false" optimize="false" failonerror="true">
             <src path="${test.dir}"/>
             <classpath refid="test-classpath"/>
         </javac>
     </target>
                                                                                 
-    <target name="tests" depends="build, buildtests" description="Run tests">
+    <target name="tests" depends="build, buildtests, clojure-test" description="Run tests">
         <junit printsummary="on"
             fork="false"
             haltonfailure="false"

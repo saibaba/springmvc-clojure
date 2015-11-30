@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- beans for web/ui related components -->
+    <context:component-scan base-package="springapp.web"/>
+    <context:annotation-config />
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver"/>
+    <bean class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver" />
+    <bean class="springapp.web.LoggingHandlerExceptionResolver" />
+    <bean class="springapp.service.PriceIncreaseValidator">
+      <property name="minPercentage" value="0" />
+      <property name="maxPercentage" value="10" />
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+      <property name="basename" value="messages"/>
+    </bean>
+
+    <bean id="productManager" class="springapp.service.SimpleProductManager">
+      <property name="products">
+        <list>
+          <ref bean="product1"/>
+          <ref bean="product2"/>
+          <ref bean="product3"/>
+        </list>
+      </property>
+    </bean>
+
+    <bean id="product1" class="springapp.domain.Product">
+      <property name="description" value="Lamp"/>
+      <property name="price" value="5.75"/>
+    </bean>
+                                                                                                                                        
+    <bean id="product2" class="springapp.domain.Product">
+      <property name="description" value="Table"/>
+      <property name="price" value="75.25"/>
+    </bean>
+
+    <bean id="product3" class="springapp.domain.Product">
+      <property name="description" value="Chair"/>
+      <property name="price" value="22.79"/>
+    </bean>
+
+    <bean name="/clojure" class="springapp.web.ClojureHWController" />
+
+    <bean name="/clojure/inventory" class="springapp.inventory.InventoryController">
+      <property name="productManager" ref="productManager"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+      <property name="prefix" value="/WEB-INF/jsp/"></property>
+      <property name="suffix" value=".jsp"></property>        
+    </bean>
+
+</beans>

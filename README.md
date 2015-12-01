@@ -4,6 +4,8 @@ A bunch of different spring/webmvc apis have been used in this version to accoun
 
 See ivy.xml for all dependencies, and their versions used.
 
+Also, added a (clojure) shell controller for running clojure snippets directly from the browser.
+
 ## Running application
 
 #### Start by running app server
@@ -23,7 +25,9 @@ Finally, compile, and deploy code with following ant tasks:
 * ant resolve
 * ant build 
 * ant tests
-* ant stop deploy start
+* ant stop
+* ant deploy
+* ant start (you might have to wait sometime before starting to let container deploy app)
 * ant createTables loadData printData
 
 #### You are ready to use it
@@ -45,3 +49,5 @@ Finally, compile, and deploy code with following ant tasks:
 * https://github.com/bbatsov/clojure-style-guide#comments
 * http://stackoverflow.com/questions/4313505/converting-clojure-data-structures-to-java-collections
 * http://clojure.org/java_interop
+* http://stackoverflow.com/a/3743975/4333370
+* http://www.mkyong.com/spring-mvc/spring-mvc-textarea-example/

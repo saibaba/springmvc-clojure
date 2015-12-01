@@ -35,7 +35,7 @@
 
     <bean name="/clojure" class="springapp.web.ClojureHWController" />
 
-    <bean name="/clojure/inventory" class="springapp.inventory.InventoryController">
+    <bean name="/clojure/inventory" class="springapp.web.InventoryController">
       <property name="productManager" ref="productManager"/>
     </bean>
 
@@ -44,5 +44,9 @@
       <property name="prefix" value="/WEB-INF/jsp/"></property>
       <property name="suffix" value=".jsp"></property>        
     </bean>
+
+    <!-- mvc:resources is causing @Controllers not recongized ???? -->
+    <!--mvc:resources mapping="/**" location="/resources/"/-->
+
 
 </beans>

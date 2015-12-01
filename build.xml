@@ -101,6 +101,7 @@
         <arg value="springapp.web.error"/>
         <arg value="springapp.web.inventory"/>
         <arg value="springapp.web.price"/>
+        <arg value="springapp.web.shell"/>
         <arg value="springapp.web"/>
       </java>
     </target>

@@ -5,3 +5,5 @@
 <br />
 <a href="/springapp-clj/clojure/priceincrease">Increase Price (in Clojure)</a>
 <br />
+<a href="/springapp-clj/clojure/shell">Clojure shell</a>
+<br />

@@ -2,11 +2,14 @@
   (import org.springframework.validation.Validator)
   (:require [springapp.bean :refer :all]))
 
+;;;; ProductManager = a service as in service layer pattern
 (gen-interface
   :name    springapp.service.ProductManager
   :extends [java.io.Serializable]
   :methods [ [getProducts [] java.util.List]
            [increasePrice [int] void] ])
+
+;;;; An implementation of ProductManager
 
 (gen-class
   :name   springapp.service.SimpleProductManager
@@ -44,7 +47,9 @@
   [this percent]
   (let [products (.getProductList (springapp.bean/get-field this :productDao))]
     ; calling doall to realize the lazy sequence created by map
-    (doall (map (fn [p] (increase-product-price this p percent)) products))))
+    (doall (map #(increase-product-price this %1 percent) products))))
+
+;;;; Value object used between client (controller) and its view (jsp) - view model
 
 (gen-class
   :name   springapp.service.PriceIncrease
@@ -66,6 +71,7 @@
   [this]
   (springapp.bean/get-field this :percentage))
 
+;;;; A validator for the content in value object (submitted by untrusted sources like web form)
 (gen-class
   :name   springapp.service.PriceIncreaseValidator
   :main   false

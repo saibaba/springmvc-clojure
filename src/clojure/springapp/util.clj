@@ -4,3 +4,5 @@
 (defmacro info [message]
   `(.info (springapp.bean/get-field ~(symbol (str "this")) :logger) ~message))
  
+(defmacro error [message]
+  `(.error (springapp.bean/get-field ~(symbol (str "this")) :logger) ~message))

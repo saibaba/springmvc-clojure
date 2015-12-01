@@ -17,7 +17,7 @@
 (defn hw-controller-init
   []
   (let [logger (LogFactory/getLog springapp.web.ClojureHWController) ]
-    [ [] (atom {:description "" :price 0.0 :logger logger })]))
+    [ [] (atom {:logger logger })]))
 
 (defn hw-controller-handleRequest [this req resp]
   (let [now (.toString (java.util.Date. )) ]

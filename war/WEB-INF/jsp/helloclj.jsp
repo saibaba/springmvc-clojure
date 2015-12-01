@@ -9,5 +9,6 @@
     <c:forEach items="${model.products}" var="prod">
       <c:out value="${prod.description}"/> <i>$<c:out value="${prod.price}"/></i><br><br>
     </c:forEach>
+    <%@ include file="/WEB-INF/jsp/menu.jsp" %>
   </body>
 </html>

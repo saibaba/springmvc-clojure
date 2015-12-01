@@ -1,23 +1,36 @@
+# Introduction
+This is reimplementation of spring webmvc classic tutorial, in clojure.
+A bunch of different spring/webmvc have been used in this version to account for the changes happened to spring/webmvc framework over the years.
+
+See ivy.xml for all dependencies, and their versions used.
+
+# Running application
+
+## Start by running app server
 First, run:
 ${appserver.home}/bin/startup.sh
 where appserver.home = ~/tools/apache-tomcat.../
 
 Also, make sure that you create the user specified in build.properties in tomcat: ${appserver.home}/conf/tomcat-users.xml
 
-Then,
-Start DB by running db/server.sh (in another window)
+## Then, start database
 
+Start DB by running db/server.sh (in another window).
 
+## Finally, Compile and deploy application
+Finally, compile, and deploy code with following ant tasks:
 * ant clean
 * ant resolve
 * ant build 
 * ant tests
-* ant deploy stop start
+* ant stop deploy start
 * ant createTables loadData printData
 
-* point browser at: http://localhost:9080/springapp-clj/
+## You are ready to use it
 
-Ref:
+* Point browser at: http://localhost:9080/springapp-clj/
+
+# References
 
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part1.html
 * http://terasolunaorg.github.io/guideline/1.0.x/en/Overview/SpringMVCOverview.html

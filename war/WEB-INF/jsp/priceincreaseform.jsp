@@ -26,5 +26,6 @@
       <input type="submit" align="center" value="Execute">
     </form:form>
     <a href="<c:url value="/"/>">Home</a>
+    <%@ include file="/WEB-INF/jsp/menu.jsp" %>
   </body>
 </html>

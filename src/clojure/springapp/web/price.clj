@@ -22,8 +22,10 @@
   :state state
   :prefix "price-increase-controller-"
   :methods [
-    [ ^{org.springframework.web.bind.annotation.RequestMapping {:method [org.springframework.web.bind.annotation.RequestMethod/GET]}} initializeForm [org.springframework.ui.ModelMap] org.springframework.web.servlet.ModelAndView]
-    [ ^{org.springframework.web.bind.annotation.RequestMapping {:method [org.springframework.web.bind.annotation.RequestMethod/POST]}} onSubmit [springapp.service.PriceIncrease org.springframework.validation.BindingResult] String]
+    [ ^{org.springframework.web.bind.annotation.RequestMapping {:method [org.springframework.web.bind.annotation.RequestMethod/GET]}}
+       initializeForm [org.springframework.ui.ModelMap] org.springframework.web.servlet.ModelAndView]
+    [ ^{org.springframework.web.bind.annotation.RequestMapping {:method [org.springframework.web.bind.annotation.RequestMethod/POST]}}
+       onSubmit [springapp.service.PriceIncrease org.springframework.validation.BindingResult] String]
     [^{org.springframework.beans.factory.annotation.Autowired {} } setProductManager [springapp.service.ProductManager] void]
     [^{org.springframework.beans.factory.annotation.Autowired {} } setValidator [springapp.service.PriceIncreaseValidator] void]
     [getProductManager [] springapp.service.ProductManager]])

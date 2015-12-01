@@ -1,5 +1,6 @@
 (ns springapp.web.error
-  (:require [springapp.bean :refer :all])
+  (:require [springapp.bean :refer :all]
+            [springapp.util :refer :all])
   (:import
            org.apache.commons.logging.LogFactory
            javax.servlet.http.HttpServletRequest
@@ -28,7 +29,7 @@ org.springframework.core.Ordered
 (defn logging-handler-exception-resolver-resolveException
   [this req resp handler exc]
   (let [now (.toString (java.util.Date. ))]
-    (.error (springapp.bean/get-field this :logger) (str "Exception at " now))
-    (.error (springapp.bean/get-field this :logger) exc)
+    (springapp.util/error (str "Exception at " now))
+    (springapp.util/error exc)
     (.printStackTrace exc)
     nil))

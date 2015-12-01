@@ -9,12 +9,12 @@
   :init init
   :prefix "product-"
   :methods [[setDescription [String] void] [getDescription [] String]
-            [setId [java.lang.Integer] void] [getId [] java.lang.Integer]
-           [setPrice [java.lang.Double] void] [getPrice [] java.lang.Double]])
+            [setId [int] void] [getId [] int]
+           [setPrice [double] void] [getPrice [] double]])
 
 (defn product-init
   []
-  [ [] (atom {:id nil :description "" :price 0.0 })])
+  [ [] (atom {:id nil :description "" :price (double 0.0) })])
 
 (defn product-setDescription
   [this description]

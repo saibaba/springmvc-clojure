@@ -29,3 +29,6 @@ Ref:
 * http://examples.javacodegeeks.com/enterprise-java/spring/mvc/spring-mvc-form-handling-example/
 * http://stevendick.github.io/blog/2013/08/13/write-a-spring-mvc-controller-in-clojure/
 * http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html
+* https://github.com/bbatsov/clojure-style-guide#comments
+* http://stackoverflow.com/questions/4313505/converting-clojure-data-structures-to-java-collections
+* http://clojure.org/java_interop

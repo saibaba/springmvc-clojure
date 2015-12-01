@@ -6,7 +6,7 @@
   :name    springapp.service.ProductManager
   :extends [java.io.Serializable]
   :methods [ [getProducts [] java.util.List]
-           [increasePrice [java.lang.Integer] void] ])
+           [increasePrice [int] void] ])
 
 (gen-class
   :name   springapp.service.SimpleProductManager
@@ -51,12 +51,12 @@
   :main   false
   :state  state
   :init   init
-  :methods [[setPercentage [java.lang.Integer] void] [getPercentage [] java.lang.Integer]]
+  :methods [[setPercentage [int] void] [getPercentage [] int]]
   :prefix "price-increase-")
 
 (defn price-increase-init
   []
-  [ [] (atom {:percentage (java.lang.Integer. 0) })])
+  [ [] (atom {:percentage (int 0) })])
 
 (defn price-increase-setPercentage
   [this percentage]
@@ -72,8 +72,8 @@
   :state  state
   :init   init
   :implements [org.springframework.validation.Validator]
-  :methods [[setMinPercentage [java.lang.Integer] void] [getMinPercentage [] java.lang.Integer]
-            [setMaxPercentage [java.lang.Integer] void] [getMaxPercentage [] java.lang.Integer]]
+  :methods [[setMinPercentage [int] void] [getMinPercentage [] int]
+            [setMaxPercentage [int] void] [getMaxPercentage [] int]]
   :prefix "price-increase-validator-")
 
 (defn price-increase-validator-init

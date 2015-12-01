@@ -94,9 +94,10 @@
         </classpath>
 
         <sysproperty key="clojure.compile.path" value="${build.dir}"/>
+        <arg value="springapp.util"/>
         <arg value="springapp.domain"/>
-        <arg value="springapp.service"/>
         <arg value="springapp.repository"/>
+        <arg value="springapp.service"/>
         <arg value="springapp.web.error"/>
         <arg value="springapp.web.inventory"/>
         <arg value="springapp.web.price"/>

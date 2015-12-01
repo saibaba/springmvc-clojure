@@ -7,4 +7,3 @@
 (defn get-field
   [instance key]
   (@(.state instance) key))
-

@@ -1,6 +1,6 @@
 # Introduction
 This is reimplementation of spring webmvc classic tutorial, in clojure.
-A bunch of different spring/webmvc have been used in this version to account for the changes happened to spring/webmvc framework over the years.
+A bunch of different spring/webmvc apis have been used in this version to account for the changes happened to spring/webmvc framework over the years.
 
 See ivy.xml for all dependencies, and their versions used.
 

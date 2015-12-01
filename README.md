@@ -6,18 +6,18 @@ See ivy.xml for all dependencies, and their versions used.
 
 ## Running application
 
-### Start by running app server
+#### Start by running app server
 First, run:
 ${appserver.home}/bin/startup.sh
 where appserver.home = ~/tools/apache-tomcat.../
 
 Also, make sure that you create the user specified in build.properties in tomcat: ${appserver.home}/conf/tomcat-users.xml
 
-### Then, start database
+#### Then, start database
 
 Start DB by running db/server.sh (in another window).
 
-### Finally, Compile and deploy application
+#### Finally, Compile and deploy application
 Finally, compile, and deploy code with following ant tasks:
 * ant clean
 * ant resolve
@@ -26,7 +26,7 @@ Finally, compile, and deploy code with following ant tasks:
 * ant stop deploy start
 * ant createTables loadData printData
 
-### You are ready to use it
+#### You are ready to use it
 
 * Point browser at: http://localhost:9080/springapp-clj/
 

@@ -103,6 +103,7 @@
         <arg value="springapp.web.price"/>
         <arg value="springapp.web.shell"/>
         <arg value="springapp.web"/>
+        <arg value="springapp.web.interceptors"/>
       </java>
     </target>
 

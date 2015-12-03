@@ -16,7 +16,19 @@
 
     <!-- beans for web/ui related components -->
     <context:component-scan base-package="springapp.web"/>
-    <context:annotation-config />  <!-- even things like @Autowired need this -->
+    <mvc:annotation-driven />
+
+    <mvc:interceptors>
+      <mvc:interceptor>
+        <mvc:mapping path="/priceincrease/**"/>
+        <bean class="springapp.web.TimeBasedAccessInterceptor">
+          <property name="openingTime" value="9"/>
+          <property name="closingTime" value="21"/>
+        </bean>
+      </mvc:interceptor>
+    </mvc:interceptors>
+
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver"/>
     <bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver"/>
@@ -31,11 +43,9 @@
       <property name="basename" value="messages"/>
     </bean>
 
+    <bean name="/welcome" class="springapp.web.ClojureHWController" />
 
-
-    <bean name="/clojure" class="springapp.web.ClojureHWController" />
-
-    <bean name="/clojure/inventory" class="springapp.web.InventoryController">
+    <bean name="/inventory" class="springapp.web.InventoryController">
       <property name="productManager" ref="productManager"/>
     </bean>
 
@@ -44,9 +54,5 @@
       <property name="prefix" value="/WEB-INF/jsp/"></property>
       <property name="suffix" value=".jsp"></property>        
     </bean>
-
-    <!-- mvc:resources is causing @Controllers not recongized ???? -->
-    <!--mvc:resources mapping="/**" location="/resources/"/-->
-
 
 </beans>

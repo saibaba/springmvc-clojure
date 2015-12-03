@@ -16,7 +16,7 @@
            org.springframework.stereotype.Controller))
 
 (gen-class
-  :name ^{org.springframework.stereotype.Controller "" org.springframework.web.bind.annotation.RequestMapping {:value ["/clojure/priceincrease"]} } springapp.web.PriceIncreaseController
+  :name ^{org.springframework.stereotype.Controller "" org.springframework.web.bind.annotation.RequestMapping {:value ["/priceincrease"]} } springapp.web.PriceIncreaseController
   :main false
   :init init
   :state state

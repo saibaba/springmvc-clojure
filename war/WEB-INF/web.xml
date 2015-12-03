@@ -53,12 +53,8 @@
   <!-- One servlet, the dispatcher, to rule it all           -->
   <!-- ===================================================== -->
   <servlet-mapping>
-    <url-pattern>/static/*</url-pattern>
     <servlet-name>springapp-clj</servlet-name>
-    <url-pattern>/clojure</url-pattern>
-    <url-pattern>/clojure/inventory</url-pattern>
-    <url-pattern>/clojure/shell/*</url-pattern>
-    <url-pattern>/clojure/priceincrease/*</url-pattern>
+    <url-pattern>/clojure/*</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>
@@ -74,9 +70,9 @@
     </taglib>
   </jsp-config>
 
-  <servlet-mapping>
+  <!--servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/resources/*</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping-->
 
 </web-app>

@@ -45,7 +45,7 @@
   (springapp.bean/get-field this :result))
 
 (gen-class
-  :name ^{org.springframework.stereotype.Controller "" org.springframework.web.bind.annotation.RequestMapping {:value ["/clojure/shell"]} } springapp.web.ClojureShellController
+  :name ^{org.springframework.stereotype.Controller "" org.springframework.web.bind.annotation.RequestMapping {:value ["/shell"]} } springapp.web.ClojureShellController
   :implements [org.springframework.context.ApplicationContextAware]
   :main false
   :init init

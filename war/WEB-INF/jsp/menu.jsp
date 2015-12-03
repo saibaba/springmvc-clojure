@@ -1,5 +1,5 @@
 <br/>
-<a href="/springapp-clj/clojure">Clojure Controller (main page for springapp (not the welcome/home page)) </a>
+<a href="/springapp-clj/clojure/welcome">Clojure Controller (main page for springapp (not the welcome/home page)) </a>
 <br />
 <a href="/springapp-clj/clojure/inventory">Inventory Controller (in Clojure)</a>
 <br />

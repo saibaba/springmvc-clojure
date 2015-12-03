@@ -26,6 +26,7 @@ Finally, compile, and deploy code with following ant tasks:
 * ant build 
 * ant tests
 * ant stop
+* (manually remove the servlet-api.jar from WEB-INF/lib, TODO: find a better way via ivy conf, also make sure it is not in ${appserver.home}/webapps/springapp-clj/WEB-INF/lib)
 * ant deploy
 * ant start (you might have to wait sometime before starting to let container deploy app)
 * ant createTables loadData printData
@@ -48,6 +49,8 @@ Finally, compile, and deploy code with following ant tasks:
 * http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html
 * https://github.com/bbatsov/clojure-style-guide#comments
 * http://stackoverflow.com/questions/4313505/converting-clojure-data-structures-to-java-collections
-* http://clojure.org/java_interop
+* http://clojure.org/java\_interop
 * http://stackoverflow.com/a/3743975/4333370
 * http://www.mkyong.com/spring-mvc/spring-mvc-textarea-example/
+* http://stackoverflow.com/questions/5459865/how-can-i-throw-an-exception-in-clojure
+* http://sujitpal.blogspot.com/2006/02/spring-in-chains.html (interesting dialog)
